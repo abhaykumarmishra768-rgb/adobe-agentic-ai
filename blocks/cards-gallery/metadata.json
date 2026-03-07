@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-gallery",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-03-07T07:21:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://freewebsitetemplates.com/",
+    "originPage": "homepage template gallery",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "template-gallery",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + title + action links",
+    "buttonCount": 3,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "template showcase pages",
+      "product gallery listings",
+      "portfolio grids with thumbnails"
+    ],
+    "notSuitableFor": [
+      "text-only card layouts",
+      "feature highlight cards without images",
+      "single-column card lists"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-07T07:21:00.000Z"
+  }
+}

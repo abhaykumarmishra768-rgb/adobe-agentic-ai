@@ -1,0 +1,41 @@
+{
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://freewebsitetemplates.com/"
+      ],
+      "description": "Main homepage with featured templates and site introduction",
+      "blocks": [
+        {
+          "name": "cards-gallery",
+          "instances": [
+            "#fwtTemplatesList > ul"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-3",
+          "name": "Template Gallery",
+          "selector": "#fwtTemplatesList",
+          "style": null,
+          "blocks": [
+            "cards-gallery"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-4",
+          "name": "Description",
+          "selector": ".titleBar",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "#pageDescription"
+          ]
+        }
+      ]
+    }
+  ]
+}
