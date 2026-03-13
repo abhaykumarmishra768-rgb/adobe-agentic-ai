@@ -2,54 +2,106 @@
 /* global WebImporter */
 
 // PARSER IMPORTS
-import cardsGalleryParser from './parsers/cards-gallery.js';
+import heroParser from './parsers/hero.js';
+import cardsServiceParser from './parsers/cards-service.js';
+import columnsParser from './parsers/columns.js';
 
 // TRANSFORMER IMPORTS
-import fwtCleanupTransformer from './transformers/fwt-cleanup.js';
-import fwtSectionsTransformer from './transformers/fwt-sections.js';
+import btwCleanupTransformer from './transformers/btw-cleanup.js';
+import btwSectionsTransformer from './transformers/btw-sections.js';
 
-// PARSER REGISTRY
-const parsers = {
-  'cards-gallery': cardsGalleryParser,
-};
-
-// PAGE TEMPLATE CONFIGURATION
+// PAGE TEMPLATE CONFIGURATION - Embedded from page-templates.json
 const PAGE_TEMPLATE = {
   name: 'homepage',
-  description: 'Main homepage with featured templates and site introduction',
+  description: 'BT Wholesale main homepage with hero, services overview, and promotional content',
   urls: [
-    'https://freewebsitetemplates.com/',
+    'https://www.btwholesale.com/'
   ],
   blocks: [
     {
-      name: 'cards-gallery',
-      instances: ['#fwtTemplatesList > ul'],
+      name: 'hero',
+      instances: ['section.component-v2-hero-block-inset-text.full-width-breakout']
     },
+    {
+      name: 'cards-service',
+      instances: ['.component-v2-product-service-grid']
+    },
+    {
+      name: 'columns',
+      instances: ['.layout-container.aem-GridColumn--tablet-wide--4', '.component-layout-container__indigo-gradient .hero-block-inset-text']
+    }
   ],
   sections: [
     {
-      id: 'section-3',
-      name: 'Template Gallery',
-      selector: '#fwtTemplatesList',
+      id: 'section-2',
+      name: 'Hero Banner',
+      selector: '#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:first-child',
       style: null,
-      blocks: ['cards-gallery'],
-      defaultContent: [],
+      blocks: ['hero'],
+      defaultContent: []
+    },
+    {
+      id: 'section-3',
+      name: 'Partner with Wholesale',
+      selector: '#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2)',
+      style: null,
+      blocks: ['cards-service'],
+      defaultContent: [
+        '#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) .component-v2-text-component',
+        '#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) section.component-v2-buttons'
+      ]
     },
     {
       id: 'section-4',
-      name: 'Description',
-      selector: '.titleBar',
+      name: 'Teams Phone Mobile',
+      selector: '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(3)',
       style: null,
-      blocks: [],
-      defaultContent: ['#pageDescription'],
+      blocks: ['hero'],
+      defaultContent: []
     },
-  ],
+    {
+      id: 'section-5',
+      name: 'After Something Else',
+      selector: '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(4)',
+      style: null,
+      blocks: ['columns'],
+      defaultContent: [
+        '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(4) .component-v2-text-component'
+      ]
+    },
+    {
+      id: 'section-6',
+      name: 'Testimonials',
+      selector: '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(5)',
+      style: 'indigo-gradient',
+      blocks: ['columns'],
+      defaultContent: []
+    },
+    {
+      id: 'section-7',
+      name: 'Why BT Wholesale',
+      selector: '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6)',
+      style: null,
+      blocks: ['columns'],
+      defaultContent: [
+        '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6) .component-v2-text-component:first-of-type',
+        '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6) section.component-v2-buttons'
+      ]
+    }
+  ]
+};
+
+// PARSER REGISTRY
+const parsers = {
+  'hero': heroParser,
+  'cards-service': cardsServiceParser,
+  'columns': columnsParser,
 };
 
 // TRANSFORMER REGISTRY
 const transformers = [
-  fwtCleanupTransformer,
-  fwtSectionsTransformer,
+  btwCleanupTransformer,
+  ...(PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 1 ? [btwSectionsTransformer] : []),
 ];
 
 /**
@@ -71,7 +123,7 @@ function executeTransformers(hookName, element, payload) {
 }
 
 /**
- * Find all blocks on the page based on embedded template configuration
+ * Find all blocks on the page based on the embedded template configuration
  */
 function findBlocksOnPage(document, template) {
   const pageBlocks = [];
@@ -97,6 +149,7 @@ function findBlocksOnPage(document, template) {
   return pageBlocks;
 }
 
+// EXPORT DEFAULT CONFIGURATION
 export default {
   transform: (payload) => {
     const { document, url, html, params } = payload;
@@ -140,7 +193,7 @@ export default {
 
     return [{
       element: main,
-      path,
+      path: path || '/index',
       report: {
         title: document.title,
         template: PAGE_TEMPLATE.name,

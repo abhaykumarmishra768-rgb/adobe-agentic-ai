@@ -3,36 +3,97 @@
     {
       "name": "homepage",
       "urls": [
-        "https://freewebsitetemplates.com/"
+        "https://www.btwholesale.com/"
       ],
-      "description": "Main homepage with featured templates and site introduction",
+      "description": "BT Wholesale main homepage with hero, services overview, and promotional content",
       "blocks": [
         {
-          "name": "cards-gallery",
+          "name": "hero",
           "instances": [
-            "#fwtTemplatesList > ul"
+            "section.component-v2-hero-block-inset-text.full-width-breakout"
+          ]
+        },
+        {
+          "name": "cards-service",
+          "instances": [
+            ".component-v2-product-service-grid"
+          ]
+        },
+        {
+          "name": "columns",
+          "instances": [
+            ".layout-container.aem-GridColumn--tablet-wide--4",
+            ".component-layout-container__indigo-gradient .hero-block-inset-text"
           ]
         }
       ],
       "sections": [
         {
-          "id": "section-3",
-          "name": "Template Gallery",
-          "selector": "#fwtTemplatesList",
+          "id": "section-2",
+          "name": "Hero Banner",
+          "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:first-child",
           "style": null,
           "blocks": [
-            "cards-gallery"
+            "hero"
           ],
           "defaultContent": []
         },
         {
-          "id": "section-4",
-          "name": "Description",
-          "selector": ".titleBar",
+          "id": "section-3",
+          "name": "Partner with Wholesale",
+          "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2)",
           "style": null,
-          "blocks": [],
+          "blocks": [
+            "cards-service"
+          ],
           "defaultContent": [
-            "#pageDescription"
+            "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) .component-v2-text-component",
+            "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) section.component-v2-buttons"
+          ]
+        },
+        {
+          "id": "section-4",
+          "name": "Teams Phone Mobile",
+          "selector": "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(3)",
+          "style": null,
+          "blocks": [
+            "hero"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-5",
+          "name": "After Something Else",
+          "selector": "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(4)",
+          "style": null,
+          "blocks": [
+            "columns"
+          ],
+          "defaultContent": [
+            "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(4) .component-v2-text-component"
+          ]
+        },
+        {
+          "id": "section-6",
+          "name": "Testimonials",
+          "selector": "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(5)",
+          "style": "indigo-gradient",
+          "blocks": [
+            "columns"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-7",
+          "name": "Why BT Wholesale",
+          "selector": "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6)",
+          "style": null,
+          "blocks": [
+            "columns"
+          ],
+          "defaultContent": [
+            "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6) .component-v2-text-component:first-of-type",
+            "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6) section.component-v2-buttons"
           ]
         }
       ]

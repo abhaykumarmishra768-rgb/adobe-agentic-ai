@@ -1,0 +1,125 @@
+{
+  "url": "https://www.btwholesale.com/",
+  "template": "homepage",
+  "skippedSections": [
+    {"sectionId": "section-1", "name": "Header/Navigation", "reason": "Global navigation managed separately"},
+    {"sectionId": "section-8", "name": "Footer", "reason": "Global footer managed separately"},
+    {"sectionId": "section-9", "name": "Cookie Notice", "reason": "Cookie consent handled separately"}
+  ],
+  "sections": [
+    {
+      "sectionId": "section-2",
+      "name": "Hero Banner",
+      "style": null,
+      "contentSequences": [
+        {
+          "decision": "block",
+          "blockName": "hero",
+          "blockVariant": "hero",
+          "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:first-child section.component-v2-hero-block-inset-text",
+          "notes": "Full-width hero with indigo gradient bg image, H1, subtitle, CTA. Maps to hero block with image + text + button."
+        }
+      ]
+    },
+    {
+      "sectionId": "section-3",
+      "name": "Partner with Wholesale",
+      "style": null,
+      "contentSequences": [
+        {
+          "decision": "default-content",
+          "blockName": null,
+          "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) .component-v2-text-component",
+          "notes": "H2 'Partner with Wholesale' heading and description paragraph — standard default content"
+        },
+        {
+          "decision": "block",
+          "blockName": "cards",
+          "blockVariant": "cards-service",
+          "selector": ".component-v2-product-service-grid",
+          "notes": "3 product-service cards with image, H2 title, description, product links, CTA link. Maps to cards block with image + body content per card."
+        },
+        {
+          "decision": "default-content",
+          "blockName": null,
+          "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) section.component-v2-buttons",
+          "notes": "Centered 'Explore our products & services' CTA button — default content link"
+        }
+      ]
+    },
+    {
+      "sectionId": "section-4",
+      "name": "Teams Phone Mobile",
+      "style": null,
+      "contentSequences": [
+        {
+          "decision": "block",
+          "blockName": "hero",
+          "blockVariant": "hero",
+          "selector": ".experiencefragment:nth-child(3) > .xf-content-height > .aem-Grid > .hero-block-inset-text section.component-v2-hero-block-inset-text",
+          "notes": "Second hero block with Teams Phone Mobile promo — indigo gradient bg, image, H2, description, CTA"
+        }
+      ]
+    },
+    {
+      "sectionId": "section-5",
+      "name": "After Something Else",
+      "style": null,
+      "contentSequences": [
+        {
+          "decision": "default-content",
+          "blockName": null,
+          "selector": ".experiencefragment:nth-child(3) .layout-container:first-of-type .component-v2-text-component",
+          "notes": "H2 'After something else?' heading and subtitle"
+        },
+        {
+          "decision": "block",
+          "blockName": "columns",
+          "blockVariant": "columns",
+          "selector": ".experiencefragment:nth-child(3) .layout-container:first-of-type .layout-container.aem-GridColumn--tablet-wide--4",
+          "notes": "3 icon-CTA columns: Contact us (icon + button), Call us (icon + button), Help & support (icon + button). Maps to columns block."
+        }
+      ]
+    },
+    {
+      "sectionId": "section-6",
+      "name": "Testimonials",
+      "style": "indigo-gradient",
+      "contentSequences": [
+        {
+          "decision": "block",
+          "blockName": "columns",
+          "blockVariant": "columns",
+          "selector": ".component-layout-container__indigo-gradient .aem-Grid > .hero-block-inset-text",
+          "notes": "2-column testimonial: left card with quote from Damon Russell + CTA, right side with image. Columns block handles side-by-side layout well."
+        }
+      ]
+    },
+    {
+      "sectionId": "section-7",
+      "name": "Why BT Wholesale",
+      "style": null,
+      "contentSequences": [
+        {
+          "decision": "default-content",
+          "blockName": null,
+          "selector": ".experiencefragment:nth-child(3) .layout-container:last-of-type .component-v2-text-component:first-of-type",
+          "notes": "H2 'Why BT Wholesale?' heading"
+        },
+        {
+          "decision": "block",
+          "blockName": "columns",
+          "blockVariant": "columns",
+          "selector": ".experiencefragment:nth-child(3) .layout-container:last-of-type .layout-container.aem-GridColumn--tablet-wide--4",
+          "notes": "3 value-proposition columns: each with icon image, H3 title, description paragraph. Maps to columns block."
+        },
+        {
+          "decision": "default-content",
+          "blockName": null,
+          "selector": ".experiencefragment:nth-child(3) .layout-container:last-of-type section.component-v2-buttons",
+          "notes": "CTA 'Become a BT Wholesale customer' + partnership text paragraph"
+        }
+      ]
+    }
+  ]
+}

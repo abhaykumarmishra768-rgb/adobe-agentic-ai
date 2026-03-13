@@ -1,0 +1,139 @@
+{
+  "url": "https://www.btwholesale.com/",
+  "sections": [
+    {
+      "id": "section-1",
+      "name": "Header/Navigation",
+      "selector": "header.component-bt-mega-nav",
+      "skip": true,
+      "reason": "Global navigation managed separately in EDS"
+    },
+    {
+      "id": "section-2",
+      "name": "Hero Banner",
+      "selector": "#main-content .hero-block-inset-text:first-of-type section.component-v2-hero-block-inset-text",
+      "skip": false,
+      "styling": "Purple/indigo gradient background, large background image, white text, left-aligned inset text with CTA button",
+      "contentSequences": [
+        {
+          "type": "hero",
+          "description": "Full-width hero with background image, H1 heading 'Unlock growth opportunities', subtitle, 'Join BT Wholesale' CTA button",
+          "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:first-child section.component-v2-hero-block-inset-text"
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "name": "Partner with Wholesale",
+      "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) > .xf-content-height > .aem-Grid > .layout-container",
+      "skip": false,
+      "styling": "White background, centered heading, 3-column product grid with images",
+      "contentSequences": [
+        {
+          "type": "default-content",
+          "description": "H2 heading 'Partner with Wholesale' and paragraph describing BT Wholesale services",
+          "selector": ".component-v2-text-component"
+        },
+        {
+          "type": "cards",
+          "description": "3 product-service-grid cards: Data connectivity, Voice Services, Hosted Communications. Each has image, H2, description text, product links list, CTA link",
+          "selector": ".component-v2-product-service-grid"
+        },
+        {
+          "type": "default-content",
+          "description": "Centered CTA button 'Explore our products & services'",
+          "selector": "section.component-v2-buttons"
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "name": "Teams Phone Mobile",
+      "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(3) section.component-v2-hero-block-inset-text",
+      "skip": false,
+      "styling": "Purple/indigo gradient background, image on right, white text on left with CTA",
+      "contentSequences": [
+        {
+          "type": "hero",
+          "description": "Hero block with background image, H2 'Teams Phone Mobile', description text, 'Explore Teams Phone Mobile' CTA",
+          "selector": ".experiencefragment:nth-child(3) section.component-v2-hero-block-inset-text"
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "name": "After Something Else",
+      "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(3) > .xf-content-height > .aem-Grid > .layout-container:first-of-type",
+      "skip": false,
+      "styling": "White background, centered heading, 3 icon columns with CTA buttons",
+      "contentSequences": [
+        {
+          "type": "default-content",
+          "description": "H2 'After something else?' and subtitle paragraph",
+          "selector": ".component-v2-text-component"
+        },
+        {
+          "type": "columns",
+          "description": "3 columns each with icon image, CTA button: Contact us, Call us, Help & support",
+          "selector": ".layout-container.aem-GridColumn--tablet-wide--4"
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "name": "Testimonials",
+      "selector": ".component-layout-container__indigo-gradient",
+      "skip": false,
+      "styling": "Indigo/purple gradient background, side-by-side layout with quote card and image",
+      "contentSequences": [
+        {
+          "type": "columns",
+          "description": "2-column layout: Left is white card with testimonial quote from Damon Russell (CEO, Spoke Interactive) and 'Our success stories' CTA. Right is image of woman with tablet",
+          "selector": ".component-layout-container__indigo-gradient .hero-block-inset-text"
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "name": "Why BT Wholesale",
+      "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(3) > .xf-content-height > .aem-Grid > .layout-container:last-of-type",
+      "skip": false,
+      "styling": "White background, centered heading, 3 icon+text columns, CTA button, footer text",
+      "contentSequences": [
+        {
+          "type": "default-content",
+          "description": "H2 'Why BT Wholesale?'",
+          "selector": ".component-v2-text-component"
+        },
+        {
+          "type": "columns",
+          "description": "3 columns: Breadth of expertise (icon + H3 + text), The ultimate reach (icon + H3 + text), Innovative technology solutions (icon + H3 + text)",
+          "selector": ".layout-container.aem-GridColumn--tablet-wide--4"
+        },
+        {
+          "type": "default-content",
+          "description": "CTA 'Become a BT Wholesale customer' and partnership text paragraph",
+          "selector": "section.component-v2-buttons"
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "name": "Footer",
+      "selector": ".component-global-footer",
+      "skip": true,
+      "reason": "Global footer managed separately in EDS"
+    },
+    {
+      "id": "section-9",
+      "name": "Cookie Notice",
+      "selector": "#onetrust-consent-sdk",
+      "skip": true,
+      "reason": "Cookie consent handled separately"
+    }
+  ],
+  "blockInventory": {
+    "local": ["cards-gallery"],
+    "blockCollection": ["hero", "cards", "columns"]
+  }
+}

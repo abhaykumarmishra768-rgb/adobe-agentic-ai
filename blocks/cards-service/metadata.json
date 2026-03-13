@@ -1,0 +1,12 @@
+{
+  "variantName": "cards-service",
+  "baseBlock": "cards",
+  "visualCharacteristics": ["white-bg", "product-grid", "image-top", "detailed-descriptions", "link-lists", "cta-footer"],
+  "description": "Product/service cards with image, title, description, product links list, and CTA link footer",
+  "usage": {
+    "pages": ["content/index"],
+    "reuseCount": 1
+  },
+  "createdFrom": "https://www.btwholesale.com/",
+  "createdAt": "2026-03-13"
+}
