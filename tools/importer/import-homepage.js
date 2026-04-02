@@ -3,105 +3,81 @@
 
 // PARSER IMPORTS
 import heroParser from './parsers/hero.js';
-import cardsServiceParser from './parsers/cards-service.js';
-import columnsParser from './parsers/columns.js';
+import cardsBrandParser from './parsers/cards-brand.js';
+import columnsStatsParser from './parsers/columns-stats.js';
 
 // TRANSFORMER IMPORTS
-import btwCleanupTransformer from './transformers/btw-cleanup.js';
-import btwSectionsTransformer from './transformers/btw-sections.js';
-
-// PAGE TEMPLATE CONFIGURATION - Embedded from page-templates.json
-const PAGE_TEMPLATE = {
-  name: 'homepage',
-  description: 'BT Wholesale main homepage with hero, services overview, and promotional content',
-  urls: [
-    'https://www.btwholesale.com/'
-  ],
-  blocks: [
-    {
-      name: 'hero',
-      instances: ['section.component-v2-hero-block-inset-text.full-width-breakout']
-    },
-    {
-      name: 'cards-service',
-      instances: ['.component-v2-product-service-grid']
-    },
-    {
-      name: 'columns',
-      instances: ['.layout-container.aem-GridColumn--tablet-wide--4', '.component-layout-container__indigo-gradient .hero-block-inset-text']
-    }
-  ],
-  sections: [
-    {
-      id: 'section-2',
-      name: 'Hero Banner',
-      selector: '#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:first-child',
-      style: null,
-      blocks: ['hero'],
-      defaultContent: []
-    },
-    {
-      id: 'section-3',
-      name: 'Partner with Wholesale',
-      selector: '#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2)',
-      style: null,
-      blocks: ['cards-service'],
-      defaultContent: [
-        '#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) .component-v2-text-component',
-        '#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) section.component-v2-buttons'
-      ]
-    },
-    {
-      id: 'section-4',
-      name: 'Teams Phone Mobile',
-      selector: '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(3)',
-      style: null,
-      blocks: ['hero'],
-      defaultContent: []
-    },
-    {
-      id: 'section-5',
-      name: 'After Something Else',
-      selector: '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(4)',
-      style: null,
-      blocks: ['columns'],
-      defaultContent: [
-        '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(4) .component-v2-text-component'
-      ]
-    },
-    {
-      id: 'section-6',
-      name: 'Testimonials',
-      selector: '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(5)',
-      style: 'indigo-gradient',
-      blocks: ['columns'],
-      defaultContent: []
-    },
-    {
-      id: 'section-7',
-      name: 'Why BT Wholesale',
-      selector: '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6)',
-      style: null,
-      blocks: ['columns'],
-      defaultContent: [
-        '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6) .component-v2-text-component:first-of-type',
-        '#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6) section.component-v2-buttons'
-      ]
-    }
-  ]
-};
+import cleanupTransformer from './transformers/directlinegroup-cleanup.js';
+import sectionsTransformer from './transformers/directlinegroup-sections.js';
 
 // PARSER REGISTRY
 const parsers = {
   'hero': heroParser,
-  'cards-service': cardsServiceParser,
-  'columns': columnsParser,
+  'cards-brand': cardsBrandParser,
+  'columns-stats': columnsStatsParser,
+};
+
+// PAGE TEMPLATE CONFIGURATION (embedded from page-templates.json)
+const PAGE_TEMPLATE = {
+  name: 'homepage',
+  description: 'Direct Line Group corporate homepage with hero, key metrics, news, and investor information',
+  urls: [
+    'https://www.directlinegroup.co.uk/en/index.html',
+  ],
+  blocks: [
+    {
+      name: 'hero',
+      instances: ['.banner.imagecarousel .slideinner'],
+    },
+    {
+      name: 'cards-brand',
+      instances: ['.carousels-par .pageteaser', '.parsys_column.column_3_33-33-33 .pageteaser'],
+    },
+    {
+      name: 'columns-stats',
+      instances: ['.teaser-inner.plain-background'],
+    },
+  ],
+  sections: [
+    {
+      id: 'section-1-hero',
+      name: 'Hero Banner',
+      selector: '.banner.imagecarousel',
+      style: 'dark',
+      blocks: ['hero'],
+      defaultContent: [],
+    },
+    {
+      id: 'section-2-brands',
+      name: 'Our Brands',
+      selector: 'section.brand-section',
+      style: null,
+      blocks: ['cards-brand'],
+      defaultContent: ['.brand-page-teaser h2', '.brand-page-teaser .teaser-content p'],
+    },
+    {
+      id: 'section-3-glance',
+      name: 'DLG At A Glance',
+      selector: 'section.main-section .teaser.parbase:first-child',
+      style: null,
+      blocks: ['columns-stats'],
+      defaultContent: [],
+    },
+    {
+      id: 'section-4-latest',
+      name: 'Our Latest',
+      selector: ['section.main-section .main-par > .text.parbase', 'section.main-section .parsys_column.column_3_33-33-33'],
+      style: null,
+      blocks: ['cards-brand'],
+      defaultContent: ['.main-par > .text.parbase h2'],
+    },
+  ],
 };
 
 // TRANSFORMER REGISTRY
 const transformers = [
-  btwCleanupTransformer,
-  ...(PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 1 ? [btwSectionsTransformer] : []),
+  cleanupTransformer,
+  ...(PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 1 ? [sectionsTransformer] : []),
 ];
 
 /**
@@ -134,11 +110,11 @@ function findBlocksOnPage(document, template) {
       if (elements.length === 0) {
         console.warn(`Block "${blockDef.name}" selector not found: ${selector}`);
       }
-      elements.forEach((element) => {
+      elements.forEach((el) => {
         pageBlocks.push({
           name: blockDef.name,
           selector,
-          element,
+          element: el,
           section: blockDef.section || null,
         });
       });
@@ -176,7 +152,7 @@ export default {
       }
     });
 
-    // 4. Execute afterTransform transformers (final cleanup + section breaks)
+    // 4. Execute afterTransform transformers (final cleanup + section breaks/metadata)
     executeTransformers('afterTransform', main, payload);
 
     // 5. Apply WebImporter built-in rules
@@ -188,12 +164,12 @@ export default {
 
     // 6. Generate sanitized path
     const path = WebImporter.FileUtils.sanitizePath(
-      new URL(params.originalURL).pathname.replace(/\/$/, '').replace(/\.html$/, '') || '/index'
+      new URL(params.originalURL).pathname.replace(/\/$/, '').replace(/\.html$/, '')
     );
 
     return [{
       element: main,
-      path: path || '/index',
+      path,
       report: {
         title: document.title,
         template: PAGE_TEMPLATE.name,

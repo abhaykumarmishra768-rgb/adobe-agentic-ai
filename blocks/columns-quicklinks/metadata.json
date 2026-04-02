@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-quicklinks",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-03-19T07:58:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.cliffordchance.com/home.html",
+    "originPage": "Clifford Chance homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light-grey",
+    "density": "compact",
+    "purpose": "quick-links",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "icon + label + link",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "quick access tool links",
+      "service portal shortcuts",
+      "icon-based navigation rows"
+    ],
+    "notSuitableFor": [
+      "text-heavy comparison columns",
+      "image gallery layouts",
+      "detailed feature descriptions"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/home"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-19T07:58:00.000Z"
+  }
+}

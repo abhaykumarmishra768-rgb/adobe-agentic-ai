@@ -1,139 +1,109 @@
 {
-  "url": "https://www.btwholesale.com/",
+  "url": "https://www.directlinegroup.co.uk/en/index.html",
   "sections": [
     {
-      "id": "section-1",
-      "name": "Header/Navigation",
-      "selector": "header.component-bt-mega-nav",
-      "skip": true,
-      "reason": "Global navigation managed separately in EDS"
-    },
-    {
-      "id": "section-2",
+      "id": "section-1-hero",
       "name": "Hero Banner",
-      "selector": "#main-content .hero-block-inset-text:first-of-type section.component-v2-hero-block-inset-text",
-      "skip": false,
-      "styling": "Purple/indigo gradient background, large background image, white text, left-aligned inset text with CTA button",
+      "selector": ".banner.imagecarousel",
+      "style": "dark",
+      "background": "background-image on .slideinner",
       "contentSequences": [
         {
-          "type": "hero",
-          "description": "Full-width hero with background image, H1 heading 'Unlock growth opportunities', subtitle, 'Join BT Wholesale' CTA button",
-          "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:first-child section.component-v2-hero-block-inset-text"
+          "type": "hero-carousel",
+          "selector": ".carousel.image-carousel",
+          "elements": ["h1", "a.link1", "a.link2"],
+          "description": "Full-width hero carousel with background image, main heading, and two CTA links"
         }
       ]
     },
     {
-      "id": "section-3",
-      "name": "Partner with Wholesale",
-      "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) > .xf-content-height > .aem-Grid > .layout-container",
-      "skip": false,
-      "styling": "White background, centered heading, 3-column product grid with images",
+      "id": "section-2-brands",
+      "name": "Our Brands",
+      "selector": "section.brand-section",
+      "style": null,
       "contentSequences": [
         {
-          "type": "default-content",
-          "description": "H2 heading 'Partner with Wholesale' and paragraph describing BT Wholesale services",
-          "selector": ".component-v2-text-component"
+          "type": "section-intro",
+          "selector": ".brand-page-teaser",
+          "elements": ["h2", "p"],
+          "description": "Section heading 'Our Brands' with introductory paragraph"
         },
         {
-          "type": "cards",
-          "description": "3 product-service-grid cards: Data connectivity, Voice Services, Hosted Communications. Each has image, H2, description text, product links list, CTA link",
-          "selector": ".component-v2-product-service-grid"
-        },
-        {
-          "type": "default-content",
-          "description": "Centered CTA button 'Explore our products & services'",
-          "selector": "section.component-v2-buttons"
+          "type": "brand-cards-grid",
+          "selector": ".carousels-par",
+          "elements": ["8x .pageteaser (h2 > a, img, a.link-wrapper)"],
+          "description": "Grid of 8 brand cards, each with brand name (linked), logo image, and 'View More' link. Brands: Direct Line, Churchill, Green Flag, Privilege, DLG Auto Services, Darwin, DLG Legal Services, By Miles"
         }
       ]
     },
     {
-      "id": "section-4",
-      "name": "Teams Phone Mobile",
-      "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(3) section.component-v2-hero-block-inset-text",
-      "skip": false,
-      "styling": "Purple/indigo gradient background, image on right, white text on left with CTA",
+      "id": "section-3-glance",
+      "name": "DLG At A Glance",
+      "selector": "section.main-section .teaser.parbase:first-child",
+      "style": null,
+      "background": "background-image on .teaser-inner",
       "contentSequences": [
         {
-          "type": "hero",
-          "description": "Hero block with background image, H2 'Teams Phone Mobile', description text, 'Explore Teams Phone Mobile' CTA",
-          "selector": ".experiencefragment:nth-child(3) section.component-v2-hero-block-inset-text"
+          "type": "statistics-panel",
+          "selector": ".teaser-inner.plain-background",
+          "elements": ["h2", "3x columns (label + h3 statistic + description)", "a View More", "sup footnotes"],
+          "description": "Key financial metrics with heading 'DLG At A Glance', 3-column layout of stats (£3,732m premium, 3.6% margin, 200% solvency), View More link, and footnotes"
         }
       ]
     },
     {
-      "id": "section-5",
-      "name": "After Something Else",
-      "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(3) > .xf-content-height > .aem-Grid > .layout-container:first-of-type",
-      "skip": false,
-      "styling": "White background, centered heading, 3 icon columns with CTA buttons",
+      "id": "section-4-latest",
+      "name": "Our Latest",
+      "selector": "section.main-section .text.parbase + .parsys_column",
+      "style": null,
       "contentSequences": [
         {
-          "type": "default-content",
-          "description": "H2 'After something else?' and subtitle paragraph",
-          "selector": ".component-v2-text-component"
+          "type": "section-heading",
+          "selector": ".text.parbase h2",
+          "elements": ["h2"],
+          "description": "Section heading 'Our Latest'"
         },
         {
-          "type": "columns",
-          "description": "3 columns each with icon image, CTA button: Contact us, Call us, Help & support",
-          "selector": ".layout-container.aem-GridColumn--tablet-wide--4"
+          "type": "teaser-cards-row",
+          "selector": ".parsys_column.column_3_33-33-33",
+          "elements": ["3x .pageteaser (h2 > a, img, a.link-wrapper)"],
+          "description": "3-column row of teaser cards: Results & Reports, Annual Report & Accounts 2024, Sustainability Report. Each with title, image, and 'View more' link"
         }
       ]
     },
     {
-      "id": "section-6",
-      "name": "Testimonials",
-      "selector": ".component-layout-container__indigo-gradient",
-      "skip": false,
-      "styling": "Indigo/purple gradient background, side-by-side layout with quote card and image",
+      "id": "section-5-insights",
+      "name": "Insights (Empty)",
+      "selector": "section.insights-section",
+      "style": null,
       "contentSequences": [
         {
-          "type": "columns",
-          "description": "2-column layout: Left is white card with testimonial quote from Damon Russell (CEO, Spoke Interactive) and 'Our success stories' CTA. Right is image of woman with tablet",
-          "selector": ".component-layout-container__indigo-gradient .hero-block-inset-text"
+          "type": "dynamic-filter",
+          "selector": ".article-filter-pane-wrapper",
+          "elements": [],
+          "description": "Empty article filter pane - dynamically loaded content, skip for migration"
         }
       ]
-    },
-    {
-      "id": "section-7",
-      "name": "Why BT Wholesale",
-      "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(3) > .xf-content-height > .aem-Grid > .layout-container:last-of-type",
-      "skip": false,
-      "styling": "White background, centered heading, 3 icon+text columns, CTA button, footer text",
-      "contentSequences": [
-        {
-          "type": "default-content",
-          "description": "H2 'Why BT Wholesale?'",
-          "selector": ".component-v2-text-component"
-        },
-        {
-          "type": "columns",
-          "description": "3 columns: Breadth of expertise (icon + H3 + text), The ultimate reach (icon + H3 + text), Innovative technology solutions (icon + H3 + text)",
-          "selector": ".layout-container.aem-GridColumn--tablet-wide--4"
-        },
-        {
-          "type": "default-content",
-          "description": "CTA 'Become a BT Wholesale customer' and partnership text paragraph",
-          "selector": "section.component-v2-buttons"
-        }
-      ]
-    },
-    {
-      "id": "section-8",
-      "name": "Footer",
-      "selector": ".component-global-footer",
-      "skip": true,
-      "reason": "Global footer managed separately in EDS"
-    },
-    {
-      "id": "section-9",
-      "name": "Cookie Notice",
-      "selector": "#onetrust-consent-sdk",
-      "skip": true,
-      "reason": "Cookie consent handled separately"
     }
   ],
   "blockInventory": {
-    "local": ["cards-gallery"],
-    "blockCollection": ["hero", "cards", "columns"]
+    "identified": [
+      {
+        "name": "hero",
+        "purpose": "Full-width hero banner with background image, heading, and CTA links",
+        "instances": 1
+      },
+      {
+        "name": "cards",
+        "purpose": "Grid of cards with image, title, and link",
+        "instances": 2,
+        "note": "Used for both brand cards (8 items) and teaser cards (3 items)"
+      },
+      {
+        "name": "columns",
+        "purpose": "Multi-column statistics layout with KPI numbers",
+        "instances": 1
+      }
+    ]
   }
 }

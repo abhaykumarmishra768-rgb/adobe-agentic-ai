@@ -1,71 +1,49 @@
 /* eslint-disable */
 /* global WebImporter */
+
 /**
- * Parser for hero block.
- * Base: hero. Source: https://www.btwholesale.com/
- * Generated: 2026-03-13
- *
- * Source DOM: section.component-v2-hero-block-inset-text.full-width-breakout
- *   - img (background image — may be direct child or lazy-loaded)
- *   - .component-v2-hero-block-inset-text__bodytext > h1/h2 heading + p description
- *   - .cta-container a (CTA link)
- *
- * Target: hero block
- *   Row 1 (optional): background image (single cell)
- *   Row 2: heading + description + CTA (single cell with all content)
+ * Parser for hero variant.
+ * Base: hero
+ * Source: https://www.directlinegroup.co.uk/en/index.html
+ * Selector: .banner.imagecarousel .slideinner
+ * Source structure: .slideinner with background-image, containing .carousel-text-inner > h1 and .carousel-links > a
  */
 export default function parse(element, { document }) {
-  // Background image — try direct child first, then any img outside bodytext/cta
-  let bgImage = element.querySelector(':scope > img');
-  if (!bgImage) {
-    // Fallback: find first img that is NOT inside bodytext or cta-container
-    const allImages = element.querySelectorAll('img');
-    for (const img of allImages) {
-      if (!img.closest('.component-v2-hero-block-inset-text__bodytext') && !img.closest('.cta-container')) {
-        bgImage = img;
-        break;
-      }
+  // Extract background image from inline style
+  const style = element.getAttribute('style') || '';
+  const bgMatch = style.match(/background-image:\s*url\(['"]?([^'")\s]+)['"]?\)/);
+  let bgImage = null;
+  if (bgMatch && bgMatch[1]) {
+    let imgUrl = bgMatch[1];
+    if (imgUrl.startsWith('/')) {
+      imgUrl = 'https://www.directlinegroup.co.uk' + imgUrl;
     }
+    bgImage = document.createElement('img');
+    bgImage.src = imgUrl;
+    bgImage.alt = '';
   }
 
-  // Heading — h1 or h2 inside bodytext
-  const heading = element.querySelector('.component-v2-hero-block-inset-text__bodytext h1, .component-v2-hero-block-inset-text__bodytext h2');
+  // Extract heading
+  const heading = element.querySelector('.carousel-text-inner h1, .carousel-text-inner h2, .carousel-text h1');
 
-  // Description paragraph — non-empty p inside bodytext (skip empty paragraphs)
-  const bodytext = element.querySelector('.component-v2-hero-block-inset-text__bodytext');
-  let description = null;
-  if (bodytext) {
-    const paragraphs = bodytext.querySelectorAll('p');
-    for (const p of paragraphs) {
-      const text = p.textContent.trim();
-      if (text && text.length > 1) {
-        description = p;
-        break;
-      }
-    }
-  }
+  // Extract CTA links
+  const ctaLinks = Array.from(element.querySelectorAll('.carousel-links a, .carousel-links span a'));
 
-  // CTA link
-  const cta = element.querySelector('.cta-container a');
-
-  // Build cells matching hero block library structure
+  // Build cells matching hero block structure:
+  // Row 1: background image (optional)
+  // Row 2: heading + CTA links
   const cells = [];
 
-  // Row 1 (optional): background image as single cell
   if (bgImage) {
     cells.push([bgImage]);
   }
 
-  // Row 2: all content in a SINGLE cell (heading + description + CTA wrapped in a div)
-  const contentContainer = document.createElement('div');
-  if (heading) contentContainer.appendChild(heading);
-  if (description) contentContainer.appendChild(description);
-  if (cta) {
-    const p = document.createElement('p');
-    p.appendChild(cta);
-    contentContainer.appendChild(p);
+  const contentCell = [];
+  if (heading) contentCell.push(heading);
+  ctaLinks.forEach((link) => contentCell.push(link));
+  if (contentCell.length > 0) {
+    cells.push(contentCell);
   }
-  cells.push([contentContainer]);
 
   const block = WebImporter.Blocks.createBlock(document, { name: 'hero', cells });
   element.replaceWith(block);

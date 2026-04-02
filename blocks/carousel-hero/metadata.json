@@ -1,0 +1,39 @@
+{
+  "variantName": "carousel-hero",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2026-03-19T07:58:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.cliffordchance.com/home.html",
+    "originPage": "Clifford Chance homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "wide",
+    "purpose": "hero-carousel",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + description + CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "homepage hero banners",
+      "featured content carousels",
+      "promotional slide shows with background images"
+    ],
+    "notSuitableFor": [
+      "simple image galleries",
+      "text-only carousels",
+      "product thumbnail sliders"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/home"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-19T07:58:00.000Z"
+  }
+}

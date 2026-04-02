@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-leadership",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-03-19T07:58:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.cliffordchance.com/home.html",
+    "originPage": "Clifford Chance homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "thought-leadership",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + description + CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "thought leadership article listings",
+      "blog post previews",
+      "featured insights sections"
+    ],
+    "notSuitableFor": [
+      "product catalog cards",
+      "icon-based feature cards",
+      "team member cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/home"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-19T07:58:00.000Z"
+  }
+}

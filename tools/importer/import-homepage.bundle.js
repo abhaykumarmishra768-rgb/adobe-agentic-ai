@@ -41,324 +41,228 @@ var CustomImportScript = (() => {
   });
 
   // tools/importer/parsers/hero.js
-  function parse(element, { document: document2 }) {
-    let bgImage = element.querySelector(":scope > img");
-    if (!bgImage) {
-      const allImages = element.querySelectorAll("img");
-      for (const img of allImages) {
-        if (!img.closest(".component-v2-hero-block-inset-text__bodytext") && !img.closest(".cta-container")) {
-          bgImage = img;
-          break;
-        }
+  function parse(element, { document }) {
+    const style = element.getAttribute("style") || "";
+    const bgMatch = style.match(/background-image:\s*url\(['"]?([^'")\s]+)['"]?\)/);
+    let bgImage = null;
+    if (bgMatch && bgMatch[1]) {
+      let imgUrl = bgMatch[1];
+      if (imgUrl.startsWith("/")) {
+        imgUrl = "https://www.directlinegroup.co.uk" + imgUrl;
       }
+      bgImage = document.createElement("img");
+      bgImage.src = imgUrl;
+      bgImage.alt = "";
     }
-    const heading = element.querySelector(".component-v2-hero-block-inset-text__bodytext h1, .component-v2-hero-block-inset-text__bodytext h2");
-    const bodytext = element.querySelector(".component-v2-hero-block-inset-text__bodytext");
-    let description = null;
-    if (bodytext) {
-      const paragraphs = bodytext.querySelectorAll("p");
-      for (const p of paragraphs) {
-        const text = p.textContent.trim();
-        if (text && text.length > 1) {
-          description = p;
-          break;
-        }
-      }
-    }
-    const cta = element.querySelector(".cta-container a");
+    const heading = element.querySelector(".carousel-text-inner h1, .carousel-text-inner h2, .carousel-text h1");
+    const ctaLinks = Array.from(element.querySelectorAll(".carousel-links a, .carousel-links span a"));
     const cells = [];
     if (bgImage) {
       cells.push([bgImage]);
     }
-    const contentContainer = document2.createElement("div");
-    if (heading) contentContainer.appendChild(heading);
-    if (description) contentContainer.appendChild(description);
-    if (cta) {
-      const p = document2.createElement("p");
-      p.appendChild(cta);
-      contentContainer.appendChild(p);
+    const contentCell = [];
+    if (heading) contentCell.push(heading);
+    ctaLinks.forEach((link) => contentCell.push(link));
+    if (contentCell.length > 0) {
+      cells.push(contentCell);
     }
-    cells.push([contentContainer]);
-    const block = WebImporter.Blocks.createBlock(document2, { name: "hero", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "hero", cells });
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/cards-service.js
-  function parse2(element, { document: document2 }) {
-    if (!element.parentElement) return;
-    const allCards = Array.from(document2.querySelectorAll(".component-v2-product-service-grid"));
-    if (allCards.length > 1 && allCards[0] !== element) {
-      element.remove();
-      return;
+  // tools/importer/parsers/cards-brand.js
+  function parse2(element, { document }) {
+    const inner = element.querySelector(".teaser-inner") || element;
+    const img = inner.querySelector(".image-wrapper img, .cq-dd-teaserimage, img");
+    const heading = inner.querySelector("h2");
+    const ctaLink = inner.querySelector(".link-wrapper a, a.internal");
+    const imageCell = [];
+    if (img) {
+      imageCell.push(img);
+    }
+    const contentCell = [];
+    if (heading) contentCell.push(heading);
+    if (ctaLink && ctaLink !== (heading == null ? void 0 : heading.querySelector("a"))) {
+      contentCell.push(ctaLink);
     }
     const cells = [];
-    for (const card of allCards) {
-      const img = card.querySelector("img");
-      const title = card.querySelector("figcaption h2, h2");
-      const bodyDiv = card.querySelector(".component-v2-product-service-grid__bodytext");
-      const ctaLink = card.querySelector("footer.cta-container a, .cta-container a");
-      const textCell = document2.createElement("div");
-      if (title) textCell.appendChild(title);
-      if (bodyDiv) {
-        const paras = bodyDiv.querySelectorAll("p");
-        for (const p of paras) {
-          const text = p.textContent.trim();
-          if (text && text !== "\xA0") {
-            textCell.appendChild(p);
-          }
-        }
-      }
-      if (ctaLink) {
-        const p = document2.createElement("p");
-        p.appendChild(ctaLink);
-        textCell.appendChild(p);
-      }
-      cells.push([img || "", textCell]);
+    if (imageCell.length > 0 || contentCell.length > 0) {
+      cells.push([imageCell.length > 0 ? imageCell : "", contentCell.length > 0 ? contentCell : ""]);
     }
-    const block = WebImporter.Blocks.createBlock(document2, { name: "cards-service", cells });
+    const block = WebImporter.Blocks.createBlock(document, { name: "cards-brand", cells });
     element.replaceWith(block);
-    for (const card of allCards) {
-      if (card !== element) {
-        const wrapper = card.closest(".product-service-grid");
-        if (wrapper && wrapper.parentElement) {
-          wrapper.remove();
-        } else if (card.parentElement) {
-          card.remove();
-        }
-      }
-    }
   }
 
-  // tools/importer/parsers/columns.js
-  function parse3(element, { document: document2 }) {
-    if (!element.parentElement) return;
-    const isTestimonial = element.classList.contains("hero-block-inset-text") || element.querySelector(".component-v2-hero-block-inset-text");
-    const parent = element.closest(".component-layout-container__inner") || element.parentElement;
-    let columns;
-    if (isTestimonial) {
-      columns = Array.from(parent.querySelectorAll(":scope > .hero-block-inset-text"));
-    } else {
-      columns = Array.from(
-        parent.querySelectorAll(':scope > .layout-container[class*="aem-GridColumn--tablet-wide--4"]')
-      );
-    }
-    const row = [];
-    for (const col of columns) {
-      const cellContent = document2.createElement("div");
-      if (isTestimonial) {
-        const section = col.querySelector("section.component-v2-hero-block-inset-text");
-        if (section) {
-          const bgImg = section.querySelector(":scope > img");
-          const bodytext = section.querySelector(".component-v2-hero-block-inset-text__bodytext");
-          const cta = section.querySelector(".cta-container a");
-          if (bodytext) {
-            const paras = bodytext.querySelectorAll("p");
-            for (const p of paras) {
-              const text = p.textContent.trim();
-              if (text && text.length > 1) {
-                cellContent.appendChild(p);
-              }
-            }
-          }
-          if (cta) {
-            const p = document2.createElement("p");
-            p.appendChild(cta);
-            cellContent.appendChild(p);
-          }
-          if (bgImg && !cellContent.hasChildNodes()) {
-            cellContent.appendChild(bgImg);
-          }
-        }
-      } else {
-        const images = col.querySelectorAll("img");
-        const heading = col.querySelector("h3, h2");
-        const textComponent = col.querySelectorAll(".component-v2-text-component");
-        const ctaLink = col.querySelector(".cta-container a, section.component-v2-buttons a");
-        for (const img of images) {
-          const p = document2.createElement("p");
-          p.appendChild(img);
-          cellContent.appendChild(p);
-        }
-        if (heading) cellContent.appendChild(heading);
-        for (const tc of textComponent) {
-          const paras = tc.querySelectorAll("p");
-          for (const p of paras) {
-            if (p.querySelector("img")) continue;
-            const text = p.textContent.trim();
-            if (text && text !== "\xA0") {
-              cellContent.appendChild(p);
-            }
-          }
-        }
-        if (ctaLink) {
-          const p = document2.createElement("p");
-          p.appendChild(ctaLink);
-          cellContent.appendChild(p);
-        }
+  // tools/importer/parsers/columns-stats.js
+  function parse3(element, { document }) {
+    const heading = element.querySelector("h2");
+    const columns = element.querySelectorAll(
+      '.parsys_column[class*="33-33-33-c0"], .parsys_column[class*="33-33-33-c1"], .parsys_column[class*="33-33-33-c2"]'
+    );
+    const viewMoreLink = element.querySelector('a[href*="group-profile"]');
+    const footnotes = element.querySelector(".text.parbase sup");
+    const cells = [];
+    columns.forEach((col) => {
+      const label = col.querySelector(".text.parbase p, .default p");
+      const value = col.querySelector(".statistic-title h3, .statistic-title span");
+      const description = col.querySelector(".statistic-text1");
+      const row = [];
+      if (label) row.push(label);
+      if (value) row.push(value);
+      if (description) row.push(description);
+      if (row.length > 0) {
+        cells.push(row);
       }
-      row.push(cellContent);
-    }
-    const cells = [row];
-    const block = WebImporter.Blocks.createBlock(document2, { name: "columns", cells });
+    });
+    const block = WebImporter.Blocks.createBlock(document, { name: "columns-stats", cells });
     element.replaceWith(block);
-    for (const col of columns) {
-      if (col !== element && col.parentElement) {
-        col.remove();
-      }
-    }
   }
 
-  // tools/importer/transformers/btw-cleanup.js
-  var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
+  // tools/importer/transformers/directlinegroup-cleanup.js
+  var H = { before: "beforeTransform", after: "afterTransform" };
   function transform(hookName, element, payload) {
-    if (hookName === TransformHook.beforeTransform) {
+    if (hookName === H.before) {
       WebImporter.DOMUtils.remove(element, [
         "#onetrust-consent-sdk",
-        "#onetrust-banner-sdk",
-        ".onetrust-pc-dark-filter"
+        '[class*="onetrust"]',
+        "#ot-sdk-btn-floating",
+        ".ot-sdk-row"
       ]);
-      WebImporter.DOMUtils.remove(element, [".component-spacer"]);
-    }
-    if (hookName === TransformHook.afterTransform) {
+      WebImporter.DOMUtils.remove(element, [".dg-alert"]);
+      WebImporter.DOMUtils.remove(element, ["#downbutton"]);
       WebImporter.DOMUtils.remove(element, [
-        "header.component-bt-mega-nav",
-        ".component-bt-mega-nav__top",
-        ".component-bt-mega-nav__top-drawer",
-        ".component-global-footer",
-        ".component-jump-to-content",
-        ".component-jump-to-content--opener",
-        "#window_mediaDetector",
-        "#back-to-top",
-        ".component-back-to-top-link",
-        'img[src^="blob:"]',
-        "iframe",
-        "link",
-        "noscript"
+        ".carousel-pager-wrapper",
+        ".carousel-branding",
+        ".hiddentitles"
       ]);
-      element.querySelectorAll('a[href=""], a[href="#"]').forEach((a) => {
-        var _a;
-        const text = a.textContent.trim();
-        if (!text || text === "Back to top") ((_a = a.closest("p")) == null ? void 0 : _a.remove()) || a.remove();
+      WebImporter.DOMUtils.remove(element, ["section.insights-section"]);
+    }
+    if (hookName === H.after) {
+      WebImporter.DOMUtils.remove(element, [
+        "header.site-header-wrapper",
+        "header",
+        "footer.site-footer-wrapper",
+        "footer",
+        "nav",
+        "#backingpanel",
+        ".backinghighlight",
+        "#navmenu",
+        "#navmenumobile",
+        "#navshares",
+        ".mobilemenu",
+        ".topnavmultimenu"
+      ]);
+      WebImporter.DOMUtils.remove(element, ["iframe", "link", "noscript"]);
+      element.querySelectorAll("*").forEach((el) => {
+        el.removeAttribute("data-slick-index");
+        el.removeAttribute("data-emptytext");
+        el.removeAttribute("aria-describedby");
+        el.removeAttribute("tabindex");
+        el.removeAttribute("adhocenable");
       });
+      element.querySelectorAll(".teaser-content").forEach((el) => {
+        if (!el.textContent.trim()) el.remove();
+      });
+      element.querySelectorAll('div[style*="clear:both"], div[style*="clear: both"]').forEach((el) => el.remove());
     }
   }
 
-  // tools/importer/transformers/btw-sections.js
-  var TransformHook2 = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
+  // tools/importer/transformers/directlinegroup-sections.js
+  var H2 = { before: "beforeTransform", after: "afterTransform" };
   function transform2(hookName, element, payload) {
-    if (hookName === TransformHook2.afterTransform) {
-      const { template } = payload;
+    if (hookName === H2.after) {
+      const { template } = payload || {};
       if (!template || !template.sections || template.sections.length < 2) return;
-      const doc = element.ownerDocument || document;
+      const { document } = element.ownerDocument ? { document: element.ownerDocument } : { document };
       const sections = template.sections;
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
-        const selectorList = Array.isArray(section.selector) ? section.selector : [section.selector];
+        const selectors = Array.isArray(section.selector) ? section.selector : [section.selector];
         let sectionEl = null;
-        for (const sel of selectorList) {
+        for (const sel of selectors) {
           sectionEl = element.querySelector(sel);
           if (sectionEl) break;
         }
         if (!sectionEl) continue;
         if (section.style) {
-          const sectionMetadata = WebImporter.Blocks.createBlock(doc, {
+          const sectionMetadata = WebImporter.Blocks.createBlock(document, {
             name: "Section Metadata",
             cells: { style: section.style }
           });
-          sectionEl.after(sectionMetadata);
+          if (sectionEl.nextSibling) {
+            sectionEl.parentNode.insertBefore(sectionMetadata, sectionEl.nextSibling);
+          } else {
+            sectionEl.parentNode.appendChild(sectionMetadata);
+          }
         }
-        if (i > 0 && sectionEl.previousElementSibling) {
-          const hr = doc.createElement("hr");
-          sectionEl.before(hr);
+        if (i > 0) {
+          const hr = document.createElement("hr");
+          sectionEl.parentNode.insertBefore(hr, sectionEl);
         }
       }
     }
   }
 
   // tools/importer/import-homepage.js
+  var parsers = {
+    "hero": parse,
+    "cards-brand": parse2,
+    "columns-stats": parse3
+  };
   var PAGE_TEMPLATE = {
     name: "homepage",
-    description: "BT Wholesale main homepage with hero, services overview, and promotional content",
+    description: "Direct Line Group corporate homepage with hero, key metrics, news, and investor information",
     urls: [
-      "https://www.btwholesale.com/"
+      "https://www.directlinegroup.co.uk/en/index.html"
     ],
     blocks: [
       {
         name: "hero",
-        instances: ["section.component-v2-hero-block-inset-text.full-width-breakout"]
+        instances: [".banner.imagecarousel .slideinner"]
       },
       {
-        name: "cards-service",
-        instances: [".component-v2-product-service-grid"]
+        name: "cards-brand",
+        instances: [".carousels-par .pageteaser", ".parsys_column.column_3_33-33-33 .pageteaser"]
       },
       {
-        name: "columns",
-        instances: [".layout-container.aem-GridColumn--tablet-wide--4", ".component-layout-container__indigo-gradient .hero-block-inset-text"]
+        name: "columns-stats",
+        instances: [".teaser-inner.plain-background"]
       }
     ],
     sections: [
       {
-        id: "section-2",
+        id: "section-1-hero",
         name: "Hero Banner",
-        selector: "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:first-child",
-        style: null,
+        selector: ".banner.imagecarousel",
+        style: "dark",
         blocks: ["hero"],
         defaultContent: []
       },
       {
-        id: "section-3",
-        name: "Partner with Wholesale",
-        selector: "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2)",
+        id: "section-2-brands",
+        name: "Our Brands",
+        selector: "section.brand-section",
         style: null,
-        blocks: ["cards-service"],
-        defaultContent: [
-          "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) .component-v2-text-component",
-          "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) section.component-v2-buttons"
-        ]
+        blocks: ["cards-brand"],
+        defaultContent: [".brand-page-teaser h2", ".brand-page-teaser .teaser-content p"]
       },
       {
-        id: "section-4",
-        name: "Teams Phone Mobile",
-        selector: "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(3)",
+        id: "section-3-glance",
+        name: "DLG At A Glance",
+        selector: "section.main-section .teaser.parbase:first-child",
         style: null,
-        blocks: ["hero"],
+        blocks: ["columns-stats"],
         defaultContent: []
       },
       {
-        id: "section-5",
-        name: "After Something Else",
-        selector: "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(4)",
+        id: "section-4-latest",
+        name: "Our Latest",
+        selector: ["section.main-section .main-par > .text.parbase", "section.main-section .parsys_column.column_3_33-33-33"],
         style: null,
-        blocks: ["columns"],
-        defaultContent: [
-          "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(4) .component-v2-text-component"
-        ]
-      },
-      {
-        id: "section-6",
-        name: "Testimonials",
-        selector: "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(5)",
-        style: "indigo-gradient",
-        blocks: ["columns"],
-        defaultContent: []
-      },
-      {
-        id: "section-7",
-        name: "Why BT Wholesale",
-        selector: "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6)",
-        style: null,
-        blocks: ["columns"],
-        defaultContent: [
-          "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6) .component-v2-text-component:first-of-type",
-          "#main-content .root > .aem-Grid > .responsivegrid > .aem-Grid > :nth-child(6) section.component-v2-buttons"
-        ]
+        blocks: ["cards-brand"],
+        defaultContent: [".main-par > .text.parbase h2"]
       }
     ]
-  };
-  var parsers = {
-    "hero": parse,
-    "cards-service": parse2,
-    "columns": parse3
   };
   var transformers = [
     transform,
@@ -376,19 +280,19 @@ var CustomImportScript = (() => {
       }
     });
   }
-  function findBlocksOnPage(document2, template) {
+  function findBlocksOnPage(document, template) {
     const pageBlocks = [];
     template.blocks.forEach((blockDef) => {
       blockDef.instances.forEach((selector) => {
-        const elements = document2.querySelectorAll(selector);
+        const elements = document.querySelectorAll(selector);
         if (elements.length === 0) {
           console.warn(`Block "${blockDef.name}" selector not found: ${selector}`);
         }
-        elements.forEach((element) => {
+        elements.forEach((el) => {
           pageBlocks.push({
             name: blockDef.name,
             selector,
-            element,
+            element: el,
             section: blockDef.section || null
           });
         });
@@ -399,15 +303,15 @@ var CustomImportScript = (() => {
   }
   var import_homepage_default = {
     transform: (payload) => {
-      const { document: document2, url, html, params } = payload;
-      const main = document2.body;
+      const { document, url, html, params } = payload;
+      const main = document.body;
       executeTransformers("beforeTransform", main, payload);
-      const pageBlocks = findBlocksOnPage(document2, PAGE_TEMPLATE);
+      const pageBlocks = findBlocksOnPage(document, PAGE_TEMPLATE);
       pageBlocks.forEach((block) => {
         const parser = parsers[block.name];
         if (parser) {
           try {
-            parser(block.element, { document: document2, url, params });
+            parser(block.element, { document, url, params });
           } catch (e) {
             console.error(`Failed to parse ${block.name} (${block.selector}):`, e);
           }
@@ -416,19 +320,19 @@ var CustomImportScript = (() => {
         }
       });
       executeTransformers("afterTransform", main, payload);
-      const hr = document2.createElement("hr");
+      const hr = document.createElement("hr");
       main.appendChild(hr);
-      WebImporter.rules.createMetadata(main, document2);
-      WebImporter.rules.transformBackgroundImages(main, document2);
+      WebImporter.rules.createMetadata(main, document);
+      WebImporter.rules.transformBackgroundImages(main, document);
       WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
       const path = WebImporter.FileUtils.sanitizePath(
-        new URL(params.originalURL).pathname.replace(/\/$/, "").replace(/\.html$/, "") || "/index"
+        new URL(params.originalURL).pathname.replace(/\/$/, "").replace(/\.html$/, "")
       );
       return [{
         element: main,
-        path: path || "/index",
+        path,
         report: {
-          title: document2.title,
+          title: document.title,
           template: PAGE_TEMPLATE.name,
           blocks: pageBlocks.map((b) => b.name)
         }

@@ -1,125 +1,134 @@
 {
-  "url": "https://www.btwholesale.com/",
-  "template": "homepage",
-  "skippedSections": [
-    {"sectionId": "section-1", "name": "Header/Navigation", "reason": "Global navigation managed separately"},
-    {"sectionId": "section-8", "name": "Footer", "reason": "Global footer managed separately"},
-    {"sectionId": "section-9", "name": "Cookie Notice", "reason": "Cookie consent handled separately"}
-  ],
+  "url": "https://www.directlinegroup.co.uk/en/index.html",
+  "title": "Direct Line Group Homepage",
   "sections": [
     {
-      "sectionId": "section-2",
+      "id": "section-1-hero",
       "name": "Hero Banner",
-      "style": null,
-      "contentSequences": [
+      "style": "dark",
+      "decisions": [
         {
+          "contentSequence": "hero-carousel",
           "decision": "block",
           "blockName": "hero",
-          "blockVariant": "hero",
-          "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:first-child section.component-v2-hero-block-inset-text",
-          "notes": "Full-width hero with indigo gradient bg image, H1, subtitle, CTA. Maps to hero block with image + text + button."
+          "reasoning": "Full-width hero with background image, heading, and CTAs requires a hero block. Single slide with background image, h1 text overlay, and two action links.",
+          "selector": ".banner.imagecarousel",
+          "content": {
+            "image": "https://www.directlinegroup.co.uk/content/dam/dlg/corporate/images-and-documents/general/banners/carousel.london.office",
+            "heading": "Direct Line Insurance Group Limited is now owned by Aviva plc",
+            "cta1": {"text": "Read the announcement", "url": "https://www.aviva.com/newsroom/news-releases/2025/07/aviva-completes-acquisition-of-direct-line/"},
+            "cta2": {"text": "Visit Aviva for current news and updates", "url": "https://www.aviva.com/"}
+          }
         }
       ]
     },
     {
-      "sectionId": "section-3",
-      "name": "Partner with Wholesale",
+      "id": "section-2-brands",
+      "name": "Our Brands",
       "style": null,
-      "contentSequences": [
+      "decisions": [
         {
+          "contentSequence": "section-intro",
           "decision": "default-content",
-          "blockName": null,
-          "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) .component-v2-text-component",
-          "notes": "H2 'Partner with Wholesale' heading and description paragraph — standard default content"
+          "reasoning": "Simple h2 + paragraph is default content - an author would type this in a document.",
+          "content": {
+            "heading": "Our Brands",
+            "text": "We are home to several of the country's best-known brands, each with its own clearly defined personality and proposition, serving millions of customers in the UK."
+          }
         },
         {
+          "contentSequence": "brand-cards-grid",
           "decision": "block",
           "blockName": "cards",
-          "blockVariant": "cards-service",
-          "selector": ".component-v2-product-service-grid",
-          "notes": "3 product-service cards with image, H2 title, description, product links, CTA link. Maps to cards block with image + body content per card."
-        },
-        {
-          "decision": "default-content",
-          "blockName": null,
-          "selector": "#main-content > .root > .aem-Grid > .responsivegrid > .aem-Grid > .experiencefragment:nth-child(2) section.component-v2-buttons",
-          "notes": "Centered 'Explore our products & services' CTA button — default content link"
+          "reasoning": "Repeating pattern of 8 brand cards with image + title + link maps to a cards block. Each card has: linked heading, logo image, and 'View More' CTA.",
+          "selector": ".carousels-par .pageteaser",
+          "instanceCount": 8,
+          "content": [
+            {"title": "Direct Line", "image": "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_copy_1927695808/image.img.png/1753691325937.png", "url": "https://www.directlinegroup.co.uk/en/brands/direct-line.html"},
+            {"title": "Churchill", "image": "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_copy_265648194/image.img.png/1753695368631.png", "url": "https://www.directlinegroup.co.uk/en/brands/churchill.html"},
+            {"title": "Green Flag", "image": "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_copy/image.img.png/1753691335754.png", "url": "https://www.directlinegroup.co.uk/en/brands/green-flag.html"},
+            {"title": "Privilege", "image": "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_578317543/image.img.png/1720429470204.png", "url": "https://www.directlinegroup.co.uk/en/brands/privilege.html"},
+            {"title": "DLG Auto Services", "image": "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_990920401/image.img.png/1720429466028.png", "url": "https://www.directlinegroup.co.uk/en/brands/dlg-auto-services.html"},
+            {"title": "Darwin", "image": "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_990920401_1346419619/image.img.png/1720429459833.png", "url": "https://www.directlinegroup.co.uk/en/brands/darwin.html"},
+            {"title": "DLG Legal Services", "image": "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_1179961845/image.img.png/1710767116737.png", "url": "https://www.directlinegroup.co.uk/en/brands/dlg-legal-services.html"},
+            {"title": "By Miles", "image": "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_578317543_1397551007/image.img.png/1715743402787.png", "url": "https://www.directlinegroup.co.uk/en/brands/by-miles.html"}
+          ]
         }
       ]
     },
     {
-      "sectionId": "section-4",
-      "name": "Teams Phone Mobile",
+      "id": "section-3-glance",
+      "name": "DLG At A Glance",
       "style": null,
-      "contentSequences": [
+      "decisions": [
         {
-          "decision": "block",
-          "blockName": "hero",
-          "blockVariant": "hero",
-          "selector": ".experiencefragment:nth-child(3) > .xf-content-height > .aem-Grid > .hero-block-inset-text section.component-v2-hero-block-inset-text",
-          "notes": "Second hero block with Teams Phone Mobile promo — indigo gradient bg, image, H2, description, CTA"
-        }
-      ]
-    },
-    {
-      "sectionId": "section-5",
-      "name": "After Something Else",
-      "style": null,
-      "contentSequences": [
-        {
-          "decision": "default-content",
-          "blockName": null,
-          "selector": ".experiencefragment:nth-child(3) .layout-container:first-of-type .component-v2-text-component",
-          "notes": "H2 'After something else?' heading and subtitle"
-        },
-        {
+          "contentSequence": "statistics-panel",
           "decision": "block",
           "blockName": "columns",
-          "blockVariant": "columns",
-          "selector": ".experiencefragment:nth-child(3) .layout-container:first-of-type .layout-container.aem-GridColumn--tablet-wide--4",
-          "notes": "3 icon-CTA columns: Contact us (icon + button), Call us (icon + button), Help & support (icon + button). Maps to columns block."
+          "reasoning": "3-column statistics layout with heading, KPI values, descriptions and footnotes. Maps to a columns block with structured data per column.",
+          "selector": ".teaser-inner.plain-background",
+          "content": {
+            "heading": "DLG At A Glance",
+            "columns": [
+              {"label": "Gross written premium and associated fees", "value": "£3,732m", "description": "25.3% increase on 2023"},
+              {"label": "Net insurance margin", "value": "3.6%", "description": "12.3pts increase on 2023"},
+              {"label": "Solvency capital ratio pre-final dividend", "value": "200%", "description": "5.0 pence per share final dividend"}
+            ],
+            "cta": {"text": "View More", "url": "https://www.directlinegroup.co.uk/en/who-we-are/group-profile.html"}
+          }
         }
       ]
     },
     {
-      "sectionId": "section-6",
-      "name": "Testimonials",
-      "style": "indigo-gradient",
-      "contentSequences": [
-        {
-          "decision": "block",
-          "blockName": "columns",
-          "blockVariant": "columns",
-          "selector": ".component-layout-container__indigo-gradient .aem-Grid > .hero-block-inset-text",
-          "notes": "2-column testimonial: left card with quote from Damon Russell + CTA, right side with image. Columns block handles side-by-side layout well."
-        }
-      ]
-    },
-    {
-      "sectionId": "section-7",
-      "name": "Why BT Wholesale",
+      "id": "section-4-latest",
+      "name": "Our Latest",
       "style": null,
-      "contentSequences": [
+      "decisions": [
         {
+          "contentSequence": "section-heading",
           "decision": "default-content",
-          "blockName": null,
-          "selector": ".experiencefragment:nth-child(3) .layout-container:last-of-type .component-v2-text-component:first-of-type",
-          "notes": "H2 'Why BT Wholesale?' heading"
+          "reasoning": "Simple h2 heading is default content.",
+          "content": {"heading": "Our Latest"}
         },
         {
+          "contentSequence": "teaser-cards-row",
           "decision": "block",
-          "blockName": "columns",
-          "blockVariant": "columns",
-          "selector": ".experiencefragment:nth-child(3) .layout-container:last-of-type .layout-container.aem-GridColumn--tablet-wide--4",
-          "notes": "3 value-proposition columns: each with icon image, H3 title, description paragraph. Maps to columns block."
-        },
-        {
-          "decision": "default-content",
-          "blockName": null,
-          "selector": ".experiencefragment:nth-child(3) .layout-container:last-of-type section.component-v2-buttons",
-          "notes": "CTA 'Become a BT Wholesale customer' + partnership text paragraph"
+          "blockName": "cards",
+          "reasoning": "3 teaser cards in a row with image, title, and link. Same pattern as brand cards, reuses cards block.",
+          "selector": ".parsys_column.column_3_33-33-33 .pageteaser",
+          "instanceCount": 3,
+          "content": [
+            {"title": "Results & Reports", "image": "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/main-par/pageteaser_2143357944/image.img.jpg/1741691256674.jpg", "url": "https://www.directlinegroup.co.uk/en/investors/results-reports-and-events.html"},
+            {"title": "Annual Report & Accounts 2024", "image": "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/main-par/pageteaser/image.img.png/1741683238185.png", "url": "https://www.directlinegroup.co.uk/en/investors/annual-report-2024.html"},
+            {"title": "Sustainability Report", "image": "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/main-par/pageteaser_732076347/image.img.png/1720429478921.png", "url": "https://www.directlinegroup.co.uk/content/dam/dlg/corporate/Documents/sustainability/reports-policies-and-statements/sustainability-report/2023/DLG-2022-Sustainability-Report.pdf"}
+          ]
         }
       ]
     }
-  ]
+  ],
+  "blockVariants": [
+    {
+      "genericName": "hero",
+      "variantName": "hero",
+      "isNew": false,
+      "reasoning": "Standard hero block with background image and text overlay. Uses vanilla hero from block collection."
+    },
+    {
+      "genericName": "cards",
+      "variantName": "cards-brand",
+      "isNew": true,
+      "reasoning": "Brand cards with logo image, linked title, and 'View more' CTA. Distinct from default cards due to brand logo focus. Used for both 'Our Brands' (8 cards) and 'Our Latest' (3 teaser cards) sections."
+    },
+    {
+      "genericName": "columns",
+      "variantName": "columns-stats",
+      "isNew": true,
+      "reasoning": "Statistics/KPI columns with label, large number value, and description text. Unique layout compared to standard columns."
+    }
+  ],
+  "metadata": {
+    "title": "Direct Line Group",
+    "description": "Direct Line Group is one of the UK's largest insurance companies and home to some of the best-known brands including Direct Line, Churchill and Green Flag.",
+    "og:image": "http://www.directlinegroup.co.uk/content/dam/dlg/corporate/images-and-documents/home-page/homepage-carousel.jpg"
+  }
 }

@@ -1,0 +1,420 @@
+/* ==========================================================================
+   Clifford Chance - AEM Edge Delivery Services Design System
+   Migrated from: https://www.cliffordchance.com/home.html
+   ========================================================================== */
+
+/* Fallback font */
+@font-face {
+  font-family: inter-fallback;
+  size-adjust: 100%;
+  src: local('Arial');
+}
+
+/* ==========================================================================
+   CSS Custom Properties (Design Tokens)
+   ========================================================================== */
+:root {
+  /* Colors - Primary */
+  --color-brand-primary: rgb(68, 83, 244);
+  --color-brand-primary-hover: rgb(50, 65, 220);
+  --color-brand-primary-light: rgb(91, 104, 245);
+  --color-black: rgb(0, 0, 0);
+  --color-white: rgb(255, 255, 255);
+
+  /* Colors - Neutrals */
+  --color-gray-900: rgb(4, 1, 0);
+  --color-gray-700: rgb(51, 51, 51);
+  --color-gray-600: rgb(102, 102, 102);
+  --color-gray-500: rgb(128, 127, 131);
+  --color-gray-300: rgb(200, 200, 200);
+  --color-gray-200: rgb(220, 220, 220);
+  --color-gray-100: rgb(240, 240, 240);
+
+  /* Colors - Semantic */
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-muted: var(--color-gray-500);
+  --color-text-on-dark: var(--color-white);
+  --color-link: var(--color-brand-primary);
+  --color-link-hover: var(--color-brand-primary-hover);
+  --color-background: var(--color-white);
+  --color-background-light: var(--color-gray-200);
+  --color-background-dark: var(--color-gray-900);
+
+  /* Typography - Font Families */
+  --body-font-family: 'Inter', inter-fallback, sans-serif;
+  --heading-font-family: 'Inter', inter-fallback, sans-serif;
+  --fixed-font-family: 'Roboto Mono', menlo, consolas, monospace;
+
+  /* Typography - Font Sizes */
+  --heading-font-size-xxl: 44px;
+  --heading-font-size-xl: 36px;
+  --heading-font-size-l: 28px;
+  --heading-font-size-m: 24px;
+  --heading-font-size-s: 20px;
+  --heading-font-size-xs: 18px;
+  --body-font-size-l: 18px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+
+  /* Typography - Font Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Typography - Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-s: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 32px;
+  --spacing-xl: 48px;
+  --spacing-xxl: 64px;
+  --spacing-section: 80px;
+
+  /* Layout */
+  --max-width: 1200px;
+  --section-max-width: 1200px;
+
+  /* Buttons */
+  --button-bg: var(--color-brand-primary);
+  --button-bg-hover: var(--color-brand-primary-hover);
+  --button-color: var(--color-white);
+  --button-border-radius: 50px;
+  --button-padding: 12px 24px;
+  --button-font-size: var(--body-font-size-m);
+  --button-font-weight: var(--font-weight-regular);
+  --button-transition: background-color 0.2s ease, transform 0.1s ease;
+
+  /* Links */
+  --link-transition: color 0.2s ease;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+
+  /* Nav height (for spacing) */
+  --nav-height: 64px;
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: none;
+}
+
+body.appear {
+  display: block;
+}
+
+header {
+  height: var(--nav-height);
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font-family);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-tight);
+  margin-top: 0;
+  margin-bottom: var(--spacing-s);
+  color: var(--color-text-primary);
+  scroll-margin: calc(var(--nav-height) + 16px);
+}
+
+h1 {
+  font-size: var(--heading-font-size-xxl);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: var(--heading-font-size-l);
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: var(--heading-font-size-m);
+}
+
+h4 {
+  font-size: var(--heading-font-size-s);
+}
+
+h5 {
+  font-size: var(--heading-font-size-xs);
+}
+
+h6 {
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-medium);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-s);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+}
+
+strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+a:any-link {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: var(--link-transition);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+a.button:any-link,
+button {
+  display: inline-block;
+  padding: var(--button-padding);
+  background-color: var(--button-bg);
+  color: var(--button-color);
+  font-family: var(--body-font-family);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: 1.2;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  transition: var(--button-transition);
+  white-space: nowrap;
+  text-align: center;
+}
+
+a.button:hover,
+button:hover {
+  background-color: var(--button-bg-hover);
+}
+
+a.button:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+/* Secondary button */
+a.button.secondary:any-link,
+button.secondary {
+  background-color: transparent;
+  color: var(--color-brand-primary);
+  border: 1px solid var(--color-brand-primary);
+}
+
+a.button.secondary:hover,
+button.secondary:hover {
+  background-color: var(--color-brand-primary);
+  color: var(--color-white);
+}
+
+/* ==========================================================================
+   Images
+   ========================================================================== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+ul, ol {
+  padding-left: 1.5em;
+  margin-top: 0;
+  margin-bottom: var(--spacing-s);
+}
+
+li {
+  margin-bottom: 0.5em;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Section Structure
+   ========================================================================== */
+main {
+  max-width: var(--section-max-width);
+  margin: 0 auto;
+}
+
+main > .section {
+  padding: var(--spacing-xl) var(--spacing-m);
+}
+
+main > .section > .default-content-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Section Variants (from section-metadata)
+   ========================================================================== */
+
+/* Dark section - used for hero carousel */
+main > .section.dark {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-on-dark);
+  max-width: 100%;
+  padding: 0;
+}
+
+main > .section.dark h1,
+main > .section.dark h2,
+main > .section.dark h3,
+main > .section.dark h4,
+main > .section.dark h5,
+main > .section.dark h6 {
+  color: var(--color-text-on-dark);
+}
+
+main > .section.dark p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+main > .section.dark a:any-link {
+  color: var(--color-white);
+}
+
+/* Light-grey section - used for quick links / tools */
+main > .section.light-grey {
+  background-color: var(--color-background-light);
+  max-width: 100%;
+}
+
+main > .section.light-grey h1,
+main > .section.light-grey h2,
+main > .section.light-grey h3 {
+  color: var(--color-text-primary);
+}
+
+main > .section.light-grey p {
+  color: var(--color-text-secondary);
+}
+
+/* Cards section - full width */
+main > .section.cards-leadership-container {
+  max-width: 100%;
+}
+
+/* Default content section - centered text (like "Creating advantage" section) */
+main > .section:not([class*="-container"]):not(.dark):not(.light-grey) > .default-content-wrapper {
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+}
+
+main > .section:not([class*="-container"]):not(.dark):not(.light-grey) > .default-content-wrapper h1 {
+  font-size: var(--heading-font-size-xxl);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-black);
+  margin-bottom: var(--spacing-m);
+}
+
+main > .section:not([class*="-container"]):not(.dark):not(.light-grey) > .default-content-wrapper h2 {
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-gray-600);
+  line-height: var(--line-height-normal);
+  margin-bottom: var(--spacing-m);
+}
+
+main > .section:not([class*="-container"]):not(.dark):not(.light-grey) > .default-content-wrapper a:any-link:not(.button) {
+  color: var(--color-brand-primary);
+  font-size: var(--body-font-size-m);
+}
+
+/* ==========================================================================
+   Metadata block (hidden)
+   ========================================================================== */
+main > .section > .section-metadata-wrapper {
+  display: none;
+}
+
+main > .section > .metadata {
+  display: none;
+}
+
+/* ==========================================================================
+   HR (section dividers)
+   ========================================================================== */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-gray-300);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Responsive - Tablet
+   ========================================================================== */
+@media (min-width: 768px) {
+  :root {
+    --heading-font-size-xxl: 44px;
+    --heading-font-size-xl: 36px;
+    --heading-font-size-l: 28px;
+  }
+
+  main > .section {
+    padding: var(--spacing-xxl) var(--spacing-l);
+  }
+}
+
+/* ==========================================================================
+   Responsive - Desktop
+   ========================================================================== */
+@media (min-width: 1024px) {
+  :root {
+    --heading-font-size-xxl: 48px;
+    --heading-font-size-xl: 40px;
+    --heading-font-size-l: 32px;
+  }
+
+  main > .section {
+    padding: var(--spacing-section) var(--spacing-xl);
+  }
+}

@@ -1,65 +1,43 @@
 {
-  "url": "https://www.btwholesale.com/",
-  "timestamp": "2026-03-13T16:24:07.654Z",
+  "url": "https://www.directlinegroup.co.uk/en/index.html",
+  "timestamp": "2026-04-01T16:00:00.000Z",
   "paths": {
-    "documentPath": "content/index",
-    "htmlFilePath": "content/index.plain.html",
-    "mdFilePath": "content/index.md",
-    "dirPath": "content",
-    "filename": "index",
-    "previewPath": "/content/index"
+    "documentPath": "content/en/index",
+    "htmlFilePath": "content/en/index.plain.html",
+    "mdFilePath": "content/en/index.md",
+    "dirPath": "content/en",
+    "filename": "index"
   },
+  "previewPath": "/content/en/index",
   "screenshot": "migration-work/screenshot.png",
   "html": {
-    "filePath": "migration-work/cleaned.html",
-    "size": 323210
+    "filePath": "migration-work/cleaned.html"
   },
   "metadata": {
-    "title": "BT Wholesale | The UK's Largest Network Provider",
-    "description": "BT Wholesale is the UK's largest wholesale telecoms service provider. We provide innovative, secure, and cost-effective technology solutions tailored to your needs.",
-    "viewport": "width=device-width,initial-scale=1,maximum-scale=2,user-scalable=yes",
-    "canonical": "https://www.btwholesale.com",
-    "jsonLd": {
-      "@context": "http://schema.org",
-      "@type": "BreadcrumbList",
-      "name": "BTWholesale",
-      "itemListElement": []
-    }
+    "title": "Direct Line Group",
+    "description": "Direct Line Group is one of the UK's largest insurance companies and home to some of the best-known brands including Direct Line, Churchill and Green Flag.",
+    "og:title": "Home",
+    "og:description": "Direct Line Group is one of the UK's largest insurance companies and home to some of the best-known brands including Direct Line, Churchill and Green Flag.",
+    "og:image": "http://www.directlinegroup.co.uk/content/dam/dlg/corporate/images-and-documents/home-page/homepage-carousel.jpg",
+    "canonical": "http://www.directlinegroup.co.uk/en/index.html"
   },
   "images": {
-    "count": 23,
+    "count": 14,
     "mapping": {
-      "https://www.btwholesale.com/content/dam/shared-assets/icons/indigo/icons-document-with-copy.svg": "./images/8c6f84e5fad1dc6ee6bc063ddc882a10.png",
-      "https://www.btwholesale.com/assets/images/logos/bt-wholesale-logo-white.svg": "./images/1097229252f8bb4ef9c26b4b73145dc2.png",
-      "https://www.btwholesale.com/content/dam/shared-assets/icons/indigo/icons-headset.svg": "./images/d620d31c323be40c328ad1502eeac0e2.png",
-      "https://www.btwholesale.com/content/dam/shared-assets/icons/indigo/icons-question.svg": "./images/040f7d43f061e6556f07875950338976.png",
-      "https://www.btwholesale.com/content/dam/shared-assets/icons/indigo/icons-education.svg": "./images/852ab9bcd76d3c0f161074f9d38ed6c4.png",
-      "https://www.btwholesale.com/content/dam/shared-assets/logos/social-media/linkedin-80x80px.png": "./images/ed78f5c607bd89f79c047a1fd16a609b.png",
-      "https://www.btwholesale.com/content/dam/shared-assets/icons/indigo/icons-idea.svg": "./images/7817664ae42c9b6013f318266a29f883.png",
-      "https://www.btwholesale.com/content/dam/shared-assets/social-icons/white/icon-youtube.svg": "./images/f382c1fa4a96b17abd9d7fd10159a5ea.png",
-      "https://www.btwholesale.com/content/dam/shared-assets/icons/indigo/icons-globe.svg": "./images/01c0291ea260ac5816d62190cd753af2.png",
-      "https://www.btwholesale.com/content/dam/bt-wholesale/assets/images/logos/bt-logo-footer.svg": "./images/7b576d7c28c6bed0db6d4f24f83a7544.png",
-      "https://www.btwholesale.com/etc.clientlibs/bt-wav/clientlibs/clientlib-site/resources/icons/prev.png": "./images/c6ef0ab0db601b9a373a11d639a1218f.png",
-      "https://www.btwholesale.com/etc.clientlibs/bt-wav/clientlibs/clientlib-site/resources/icons/next.png": "./images/abcdab5c60cf44a0a17bb2b6097d18f1.png",
-      "https://www.btwholesale.com/etc.clientlibs/bt-wav/clientlibs/clientlib-site/resources/icons/loading.gif": "./images/99c642e9ae3b67176041722f829d83d9.png",
-      "https://www.btwholesale.com/content/dam/shared-assets/images/heros/indigo-gradient/bter083-bt-wholesale-ethernet-webpage-dt-2400x964.jpg": "./images/b4d1e460357c8178f90ddf085bb40b34.jpg",
-      "https://www.btwholesale.com/etc.clientlibs/bt-wav/clientlibs/clientlib-site/resources/icons/back-to-top.png": "./images/a1a32e53c8b5b5039d4e24ef5c25f0de.png",
-      "https://cdn-ukwest.onetrust.com/logos/a0327856-31fc-4f51-b6d3-1c9e883e1ecf/01919e70-81fe-7e65-b83a-d9a5cca532a0/0526bcf3-fc7d-4546-b56c-22f63656e20e/BT_Logo_Indigo_RGB_58X58_new1.jpg": "./images/6c504a68bab5d5cfcbeb7f22df9ff86b.jpg",
-      "https://cdn-ukwest.onetrust.com/logos/a0327856-31fc-4f51-b6d3-1c9e883e1ecf/79303e5d-7f77-4687-8d46-3d80c02fe418/c6780659-ae22-4b31-b5a6-b858dc680ffd/BT_logo_2019.png": "./images/b250f8345ddfb6d209a5f3068a7cac73.png",
-      "https://cdn-ukwest.onetrust.com/logos/static/powered_by_logo.svg": "./images/806486d983c7d61c3e7d9d629f5c12f2.png",
-      "https://www.btwholesale.com/content/dam/shared-assets/images/product-service-grid/3-col/prd-illustration-cloud-3col.jpg": "./images/43466a98d668a0774323c69301e3c764.jpg",
-      "https://www.btwholesale.com/content/dam/shared-assets/images/product-service-grid/3-col/prd-illustration-data-3col.jpg": "./images/67363b5ec6deaf5c1001b3a1b9f68cf0.jpg",
-      "https://www.btwholesale.com/content/dam/shared-assets/images/product-service-grid/3-col/prd-illustration-support-3col.jpg": "./images/e9eea4fa0f4d195f6575f451c45fd172.jpg",
-      "https://www.btwholesale.com/content/dam/bt-wholesale/assets/images/heros/hero-team-phone-mobile-full.jpg": "./images/4e893ea596f16b49e58957ffd0191560.jpg",
-      "https://www.btwholesale.com/content/dam/bt-wholesale/assets/images/hero-side-by-side/hero-side-woman-tablet-portal.jpg": "./images/6610d060cffb9b9d11e691bb06ef734f.jpg"
-    },
-    "stats": {
-      "total": 23,
-      "converted": 11,
-      "skipped": 12,
-      "failed": 0,
-      "tooLarge": 0,
-      "limitReached": 0
+      "https://www.directlinegroup.co.uk/etc/designs/dlg/corporate/images/logos/DLG_retina_logo.png": "./images/dlg-logo.png",
+      "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_copy_1927695808/image.img.png/1753691325937.png": "./images/brand-directline.png",
+      "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_copy_265648194/image.img.png/1753695368631.png": "./images/brand-churchill.png",
+      "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_copy/image.img.png/1753691335754.png": "./images/brand-greenflag.png",
+      "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_578317543/image.img.png/1720429470204.png": "./images/brand-privilege.png",
+      "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_990920401/image.img.png/1720429466028.png": "./images/brand-dlg-auto.png",
+      "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_990920401_1346419619/image.img.png/1720429459833.png": "./images/brand-darwin.png",
+      "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_1179961845/image.img.png/1710767116737.png": "./images/brand-dlg-legal.png",
+      "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/carousels-par/pageteaser_578317543_1397551007/image.img.png/1715743402787.png": "./images/brand-bymiles.png",
+      "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/main-par/pageteaser_2143357944/image.img.jpg/1741691256674.jpg": "./images/results-reports.jpg",
+      "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/main-par/pageteaser/image.img.png/1741683238185.png": "./images/annual-report.png",
+      "https://www.directlinegroup.co.uk/content/dlg/corporate/en/index/_jcr_content/main-par/pageteaser_732076347/image.img.png/1720429478921.png": "./images/sustainability-report.png",
+      "https://www.directlinegroup.co.uk/content/dam/dlg/corporate/images-and-documents/general/banners/carousel.london.office": "./images/hero-banner.jpg",
+      "https://www.directlinegroup.co.uk/content/dam/dlg/corporate/images-and-documents/home-page/1920x630_hompage_numbers_v1.jpg/jcr:content/renditions/cq5dam.thumbnail.640.640.png": "./images/glance-bg.png"
     }
   }
 }

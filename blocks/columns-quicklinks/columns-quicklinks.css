@@ -1,0 +1,86 @@
+/* ==========================================================================
+   Columns Quicklinks Block - Clifford Chance Style
+   Grid of quick link tiles in a light-grey section
+   ========================================================================== */
+
+.columns-quicklinks {
+  padding: 48px 0;
+}
+
+.columns-quicklinks > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.columns-quicklinks > div > div {
+  padding: 24px;
+  background-color: rgba(4, 1, 0, 0.05);
+  border-radius: 0;
+  transition: background-color 0.2s ease;
+}
+
+.columns-quicklinks > div > div:hover {
+  background-color: rgba(4, 1, 0, 0.08);
+}
+
+/* Title text (strong) */
+.columns-quicklinks strong {
+  display: block;
+  font-size: var(--body-font-size-m, 16px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-black, rgb(4, 1, 0));
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+/* Links */
+.columns-quicklinks a {
+  font-size: var(--body-font-size-s, 14px);
+  color: var(--color-brand-primary, rgb(68, 83, 244));
+  text-decoration: none;
+  font-weight: var(--font-weight-regular, 400);
+  transition: color 0.2s ease;
+}
+
+.columns-quicklinks a:hover {
+  color: var(--color-brand-primary-hover, rgb(50, 65, 220));
+  text-decoration: underline;
+}
+
+/* Image columns */
+.columns-quicklinks > div > .columns-quicklinks-img-col {
+  padding: 0;
+  background: none;
+}
+
+.columns-quicklinks > div > .columns-quicklinks-img-col img {
+  display: block;
+  width: 100%;
+}
+
+.columns-quicklinks img {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Responsive - Tablet (2 columns)
+   ========================================================================== */
+@media (min-width: 768px) {
+  .columns-quicklinks > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Responsive - Desktop (4 columns)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .columns-quicklinks > div {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .columns-quicklinks {
+    padding: 64px 0;
+  }
+}
